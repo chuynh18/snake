@@ -13,3 +13,16 @@ Note that `style-min.css` and `game-min.js` are obviously minified, but `index.h
 
 `index-full.html` + `style.css` + `game.js` together are 76.1 KB (non-gzipped).
 `index.html` + `style-min.css` + `game-min.js` together are 48.1 KB (also non-gzipped).
+
+Optimization
+------------
+
+Originally, I did a poor job of adding CSS animations in.  All the top search engine results for "replay CSS animation" led to hacks that caused the page to reflow, which I already knew was nowhere near ideal.  However, it's a solution that in most cases would lead to imperceptible performance penalties.  Unfortunately, that's not true for me, as Snake is a real time game.
+
+I was removing and adding the animation class to each snake segment as the snake moved along.  On my laptop running Chrome, this was approximately a half millisecond penalty per page reflow.  In other words, I was paying a linear time penalty (0.5 ms * `snake.length`), in addition to the cost of the game logic.  On lower-powered mobile devices, this is even worse; on my phone, it resulted in the performance noticeably suffering when `snake.length > 8`.
+
+![unoptimized animations](assets/img/unoptimized.png)
+
+While the work is incomplete, I've refactored the code to apply the animation to the snake's body only once, but to repeat it `snake.length` number of times.  Further refactoring will be required to eliminate the flickering.  That being said, I'm already reaping the performance improvements.  On my laptop, each game tick now takes less than 3 ms, no matter how long the snake is.
+
+![optimized animations](assets/img/optimized.png)
