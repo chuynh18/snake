@@ -71,6 +71,7 @@ const game = {
         this.snake[0][1] = 12;
         this.fruit[0] = null;
         this.fruit[1] = null;
+        document.getElementById("openDevPanel").textContent = "Snake";
     },
     render: function() {
         for (let i = 0; i < 17; i++) {
@@ -124,6 +125,10 @@ const game = {
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationDuration = `${this.speed}ms`;
                 } 
             }
+        }
+
+        if (this.collided) {
+            document.getElementById("openDevPanel").textContent = "You lose.";
         }
     },
     move: function() {
