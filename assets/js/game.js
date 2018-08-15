@@ -87,6 +87,7 @@ const game = {
         }
 
         document.getElementById(`${this.fruit[0]}-${this.fruit[1]}`).classList.add("fruit");
+        document.getElementById(`${this.fruit[0]}-${this.fruit[1]}`).style.animationIterationCount = 1;
         document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("snake-head");
 
         if (this.direction === 0) {
@@ -134,21 +135,33 @@ const game = {
 
             for (let k = 1; k < this.oldSnake.length; k++) {
                 if (this.oldSnake[k][0] - this.snake[k][0] === -1) {
-                    void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
+                    // void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("moveRight");
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationDuration = `${this.speed}ms`;
+                    if (k === 1) {
+                        document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationIterationCount = this.snake.length;
+                    }
                 } else if (this.oldSnake[k][0] - this.snake[k][0] === 1) {
-                    void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
+                    // void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("moveLeft");
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationDuration = `${this.speed}ms`;
+                    if (k === 1) {
+                        document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationIterationCount = this.snake.length;
+                    }
                 } else if (this.oldSnake[k][1] - this.snake[k][1] === -1) {
-                    void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
+                    // void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("moveDown");
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationDuration = `${this.speed}ms`;
+                    if (k === 1) {
+                        document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationIterationCount = this.snake.length;
+                    }
                 } else if (this.oldSnake[k][1] - this.snake[k][1] === 1) {
-                    void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
+                    // void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("moveUp");
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationDuration = `${this.speed}ms`;
+                    if (k === 1) {
+                        document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationIterationCount = this.snake.length;
+                    }
                 } 
             }
         }
