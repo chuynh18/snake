@@ -33,6 +33,6 @@ Page redraws are now less than 3 ms:
 
 ![optimized animations](assets/img/optimized.png)
 
-Game ticks are less than half a millisecond:
+Game ticks are less than half a millisecond:  (note that this is out of date.  Game ticks are now less than 0.4 ms; evaluating keypresses takes significantly longer at slightly over 1 ms.)
 
 ![optimized game code](assets/img/optimized2.png)
