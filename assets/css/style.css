@@ -72,6 +72,12 @@ button {
     background-color: #096800
 }
 
+#scores {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
+
 .fruit {
     background-color: #ff4444;
 }
@@ -79,24 +85,28 @@ button {
 .moveUp {
     animation-name: up;
     animation-duration: 200ms;
+    animation-timing-function: linear;
     position: relative;
 }
 
 .moveRight {
     animation-name: mRight;
     animation-duration: 200ms;
+    animation-timing-function: linear;
     position: relative;
 }
 
 .moveDown {
     animation-name: down;
     animation-duration: 200ms;
+    animation-timing-function: linear;
     position: relative;
 }
 
 .moveLeft {
     animation-name: mLeft;
     animation-duration: 200ms;
+    animation-timing-function: linear;
     position: relative;
 }
 

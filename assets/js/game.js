@@ -3,7 +3,7 @@
 const game = {
     speed: 420,
     direction: 0, // 0 is up, 1 is right, 2 is down, 3 is left
-    highScore: 1,
+    highScore: 0,
     snake: [[8,12]],
     oldSnake: null,
     fruit: [null, null],
@@ -11,13 +11,29 @@ const game = {
     gameStarted: false,
     setDirection: function(input) {
         if (input === 0) {
-            this.direction = 0;
+            if (this.direction !== 2) {
+                this.direction = 0;
+            } else if (this.snake.length < 3) {
+                this.direction = 0;
+            }
         } else if (input === 1) {
-            this.direction = 1;
+            if (this.direction !== 3) {
+                this.direction = 1;
+            } else if (this.snake.length < 3) {
+                this.direction = 1;
+            }
         } else if (input === 2) {
-            this.direction = 2;
+            if (this.direction !== 0) {
+                this.direction = 2;
+            } else if (this.snake.length < 3) {
+                this.direction = 2;
+            }
         } else if (input === 3) {
-            this.direction = 3;
+            if (this.direction !== 1) {
+                this.direction = 3;
+            } else if (this.snake.length < 3) {
+                this.direction = 3;
+            }
         }
     },
     checkSelfCollision: function() {
@@ -62,12 +78,16 @@ const game = {
 
         if (this.direction === 0) {
             document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveUp");
+            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
         } else if (this.direction === 1) {
             document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveRight");
+            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
         } else if (this.direction === 2) {
             document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveDown");
+            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
         } else if (this.direction === 3) {
             document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveLeft");
+            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
         }
 
         if (this.snake.length > 1) {
@@ -80,18 +100,22 @@ const game = {
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.remove("moveRight", "moveLeft", "moveUp", "moveDown");
                     void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("moveRight");
+                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationDuration = `${this.speed}ms`;
                 } else if (this.oldSnake[k][0] - this.snake[k][0] === 1) {
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.remove("moveRight", "moveLeft", "moveUp", "moveDown");
                     void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("moveLeft");
+                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationDuration = `${this.speed}ms`;
                 } else if (this.oldSnake[k][1] - this.snake[k][1] === -1) {
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.remove("moveRight", "moveLeft", "moveUp", "moveDown");
                     void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("moveDown");
+                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationDuration = `${this.speed}ms`;
                 } else if (this.oldSnake[k][1] - this.snake[k][1] === 1) {
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.remove("moveRight", "moveLeft", "moveUp", "moveDown");
                     void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("moveUp");
+                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationDuration = `${this.speed}ms`;
                 } 
             }
         }
@@ -156,6 +180,8 @@ const game = {
             this.generateFruit();
             this.newHighScore();
             this.speed -= 9;
+
+            document.getElementById("currentScore").textContent = `${this.snake.length - 1}`;
         }
 
         this.render();
@@ -169,10 +195,12 @@ const game = {
         }
     },
     newHighScore: function() {
-        if (this.snake.length > this.highScore) {
-            this.highScore = this.snake.length;
+        if (this.snake.length - 1 > this.highScore) {
+            this.highScore = this.snake.length - 1;
             console.log(`New high score: ${this.highScore}`);
         }
+
+        document.getElementById("highScore").textContent = this.highScore;
     },
     start: function() {
         this.generateFruit();
