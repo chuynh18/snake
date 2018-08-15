@@ -816,3 +816,235 @@ body {
         100% {left:0px;transform: scale(1);background-color: #16bd2c;}
     }
 }
+
+@media only screen and (max-width: 440px) {
+    .grid-item {
+        width: 20px;
+    }
+    
+    .game-cell {
+        height: 20px;
+    }
+    
+    .snake-segment {
+        border-radius: 18px;
+    }
+
+    @keyframes up {
+        0% {top:18px}
+        100% {top:0px}
+    }
+    
+    @keyframes mRight {
+        0% {right:18px}
+        100% {right:0px}
+    }
+    
+    @keyframes down {
+        0% {bottom:18px}
+        100% {bottom:0px}
+    }
+    
+    @keyframes mLeft {
+        0% {left:18px}
+        100% {left:0px}
+    }
+
+    @keyframes eatUp {
+        0% {top:18px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {top:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatRight {
+        0% {right:18px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {right:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatDown {
+        0% {bottom:18px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {bottom:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatLeft {
+        0% {left:18px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {left:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+}
+
+@media only screen and (max-width: 410px) {
+    .grid-item {
+        width: 18px;
+    }
+    
+    .game-cell {
+        height: 18px;
+    }
+    
+    .snake-segment {
+        border-radius: 16px;
+    }
+
+    @keyframes up {
+        0% {top:16px}
+        100% {top:0px}
+    }
+    
+    @keyframes mRight {
+        0% {right:16px}
+        100% {right:0px}
+    }
+    
+    @keyframes down {
+        0% {bottom:16px}
+        100% {bottom:0px}
+    }
+    
+    @keyframes mLeft {
+        0% {left:16px}
+        100% {left:0px}
+    }
+
+    @keyframes eatUp {
+        0% {top:16px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {top:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatRight {
+        0% {right:16px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {right:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatDown {
+        0% {bottom:16px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {bottom:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatLeft {
+        0% {left:16px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {left:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    .grid-item {
+        width: 16px;
+    }
+    
+    .game-cell {
+        height: 16px;
+    }
+    
+    .snake-segment {
+        border-radius: 14px;
+    }
+
+    @keyframes up {
+        0% {top:14px}
+        100% {top:0px}
+    }
+    
+    @keyframes mRight {
+        0% {right:14px}
+        100% {right:0px}
+    }
+    
+    @keyframes down {
+        0% {bottom:14px}
+        100% {bottom:0px}
+    }
+    
+    @keyframes mLeft {
+        0% {left:14px}
+        100% {left:0px}
+    }
+
+    @keyframes eatUp {
+        0% {top:14px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {top:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatRight {
+        0% {right:14px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {right:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatDown {
+        0% {bottom:14px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {bottom:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatLeft {
+        0% {left:14px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {left:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .grid-item {
+        width: 14px;
+    }
+    
+    .game-cell {
+        height: 14px;
+    }
+    
+    .snake-segment {
+        border-radius: 12px;
+    }
+
+    @keyframes up {
+        0% {top:12px}
+        100% {top:0px}
+    }
+    
+    @keyframes mRight {
+        0% {right:12px}
+        100% {right:0px}
+    }
+    
+    @keyframes down {
+        0% {bottom:12px}
+        100% {bottom:0px}
+    }
+    
+    @keyframes mLeft {
+        0% {left:12px}
+        100% {left:0px}
+    }
+
+    @keyframes eatUp {
+        0% {top:12px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {top:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatRight {
+        0% {right:12px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {right:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatDown {
+        0% {bottom:12px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {bottom:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatLeft {
+        0% {left:12px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {left:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+}
