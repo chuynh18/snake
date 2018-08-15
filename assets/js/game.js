@@ -185,7 +185,12 @@ const game = {
             this.snake.push(lastLocation);
             this.generateFruit();
             this.newHighScore();
-            this.speed -= 9;
+            if (this.speed > 110) {
+                this.speed -= 15;
+            } else {
+                this.speed = 100;
+            }
+            
 
             document.getElementById("currentScore").textContent = `${this.snake.length - 1}`;
         }
