@@ -10,3 +10,6 @@ When you collect the fruit, your snake grows by one segment, and also slithers m
 I wrote this mainly because I wanted to make a "real-time" game.  Turns out it was considerably easier than [Tic-tac-toe](https://github.com/chuynh18/tictactoe/) and [Four-in-a-row](https://github.com/chuynh18/fourinarow/).
 
 Note that `style-min.css` and `game-min.js` are obviously minified, but `index.html` is also minified.  See `index-full.html` for the original file.
+
+`index-full.html` + `style.css` + `game.js` together are 76.1 KB (non-gzipped).
+`index.html` + `style-min.css` + `game-min.js` together are 48.1 KB (also non-gzipped).
