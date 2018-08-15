@@ -115,6 +115,8 @@ body {
 
 .fruit {
     background-color: #ff4444;
+    animation-name: fruitGrow;
+    animation-duration: 700ms;
 }
 
 .moveUp {
@@ -124,25 +126,53 @@ body {
     position: relative;
 }
 
+.moveEatUp {
+    animation-name: eatUp;
+
+    animation-timing-function: linear;
+    position: relative;
+}
+
 .moveRight {
     animation-name: mRight;
-    animation-duration: 200ms;
+    animation-timing-function: linear;
+    position: relative;
+}
+
+.moveEatRight {
+    animation-name: eatRight;
     animation-timing-function: linear;
     position: relative;
 }
 
 .moveDown {
     animation-name: down;
-    animation-duration: 200ms;
+    animation-timing-function: linear;
+    position: relative;
+}
+
+.moveEatDown {
+    animation-name: eatDown;
     animation-timing-function: linear;
     position: relative;
 }
 
 .moveLeft {
     animation-name: mLeft;
-    animation-duration: 200ms;
     animation-timing-function: linear;
     position: relative;
+}
+
+.moveEatLeft {
+    animation-name: eatLeft;
+    animation-timing-function: linear;
+    position: relative;
+}
+
+@keyframes fruitGrow {
+    0% {transform: scale(0);}
+    50% {transform: scale(1.5);}
+    100% {transform: scale(1);}
 }
 
 @keyframes up {
@@ -150,9 +180,21 @@ body {
     100% {top:0px}
 }
 
+@keyframes eatUp {
+    0% {top:42px;transform: scale(1);background-color: #16bd2c;}
+    50% {transform: scale(1.5);background-color: #ff4444;}
+    100% {top:0px;transform: scale(1);background-color: #16bd2c;}
+}
+
 @keyframes mRight {
     0% {right:42px}
     100% {right:0px}
+}
+
+@keyframes eatRight {
+    0% {right:42px;transform: scale(1);background-color: #16bd2c;}
+    50% {transform: scale(1.5);background-color: #ff4444;}
+    100% {right:0px;transform: scale(1);background-color: #16bd2c;}
 }
 
 @keyframes down {
@@ -160,9 +202,21 @@ body {
     100% {bottom:0px}
 }
 
+@keyframes eatDown {
+    0% {bottom:42px;transform: scale(1);background-color: #16bd2c;}
+    50% {transform: scale(1.5);background-color: #ff4444;}
+    100% {bottom:0px;transform: scale(1);background-color: #16bd2c;}
+}
+
 @keyframes mLeft {
     0% {left:42px}
     100% {left:0px}
+}
+
+@keyframes eatLeft {
+    0% {left:42px;transform: scale(1);background-color: #16bd2c;}
+    50% {transform: scale(1.5);background-color: #ff4444;}
+    100% {left:0px;transform: scale(1);background-color: #16bd2c;}
 }
 
 @media only screen and (max-width: 750px) {
@@ -201,6 +255,30 @@ body {
         0% {left:38px}
         100% {left:0px}
     }
+
+    @keyframes eatUp {
+        0% {top:38px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {top:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatRight {
+        0% {right:38px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {right:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatDown {
+        0% {bottom:38px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {bottom:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatLeft {
+        0% {left:38px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {left:0px;transform: scale(1);background-color: #16bd2c;}
+    }
 }
 
 @media only screen and (max-width: 710px) {
@@ -234,6 +312,30 @@ body {
     @keyframes mLeft {
         0% {left:36px}
         100% {left:0px}
+    }
+
+    @keyframes eatUp {
+        0% {top:36px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {top:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatRight {
+        0% {right:36px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {right:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatDown {
+        0% {bottom:36px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {bottom:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatLeft {
+        0% {left:36px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {left:0px;transform: scale(1);background-color: #16bd2c;}
     }
 }
 
@@ -269,6 +371,30 @@ body {
         0% {left:34px}
         100% {left:0px}
     }
+
+    @keyframes eatUp {
+        0% {top:34px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {top:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatRight {
+        0% {right:34px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {right:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatDown {
+        0% {bottom:34px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {bottom:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatLeft {
+        0% {left:34px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {left:0px;transform: scale(1);background-color: #16bd2c;}
+    }
 }
 
 @media only screen and (max-width: 650px) {
@@ -302,6 +428,30 @@ body {
     @keyframes mLeft {
         0% {left:32px}
         100% {left:0px}
+    }
+
+    @keyframes eatUp {
+        0% {top:32px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {top:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatRight {
+        0% {right:32px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {right:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatDown {
+        0% {bottom:32px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {bottom:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatLeft {
+        0% {left:32px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {left:0px;transform: scale(1);background-color: #16bd2c;}
     }
 }
 
@@ -337,6 +487,30 @@ body {
         0% {left:30px}
         100% {left:0px}
     }
+
+    @keyframes eatUp {
+        0% {top:30px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {top:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatRight {
+        0% {right:30px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {right:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatDown {
+        0% {bottom:30px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {bottom:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatLeft {
+        0% {left:30px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {left:0px;transform: scale(1);background-color: #16bd2c;}
+    }
 }
 
 @media only screen and (max-width: 590px) {
@@ -371,6 +545,30 @@ body {
         0% {left:28px}
         100% {left:0px}
     }
+
+    @keyframes eatUp {
+        0% {top:28px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {top:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatRight {
+        0% {right:28px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {right:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatDown {
+        0% {bottom:28px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {bottom:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatLeft {
+        0% {left:28px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {left:0px;transform: scale(1);background-color: #16bd2c;}
+    }
 }
 
 @media only screen and (max-width: 560px) {
@@ -404,6 +602,30 @@ body {
     @keyframes mLeft {
         0% {left:26px}
         100% {left:0px}
+    }
+
+    @keyframes eatUp {
+        0% {top:26px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {top:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatRight {
+        0% {right:26px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {right:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatDown {
+        0% {bottom:26px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {bottom:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatLeft {
+        0% {left:26px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {left:0px;transform: scale(1);background-color: #16bd2c;}
     }
 }
 
@@ -453,6 +675,30 @@ body {
         0% {left:24px}
         100% {left:0px}
     }
+
+    @keyframes eatUp {
+        0% {top:24px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {top:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatRight {
+        0% {right:24px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {right:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatDown {
+        0% {bottom:24px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {bottom:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatLeft {
+        0% {left:24px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {left:0px;transform: scale(1);background-color: #16bd2c;}
+    }
 }
 
 @media only screen and (max-width: 500px) {
@@ -487,6 +733,30 @@ body {
         0% {left:22px}
         100% {left:0px}
     }
+
+    @keyframes eatUp {
+        0% {top:22px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {top:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatRight {
+        0% {right:22px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {right:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatDown {
+        0% {bottom:22px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {bottom:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatLeft {
+        0% {left:22px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {left:0px;transform: scale(1);background-color: #16bd2c;}
+    }
 }
 
 @media only screen and (max-width: 470px) {
@@ -520,5 +790,29 @@ body {
     @keyframes mLeft {
         0% {left:20px}
         100% {left:0px}
+    }
+
+    @keyframes eatUp {
+        0% {top:20px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {top:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatRight {
+        0% {right:20px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {right:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatDown {
+        0% {bottom:20px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {bottom:0px;transform: scale(1);background-color: #16bd2c;}
+    }
+
+    @keyframes eatLeft {
+        0% {left:20px;transform: scale(1);background-color: #16bd2c;}
+        50% {transform: scale(1.5);background-color: #ff4444;}
+        100% {left:0px;transform: scale(1);background-color: #16bd2c;}
     }
 }

@@ -8,6 +8,7 @@ const game = {
     oldSnake: null,
     fruit: [null, null],
     collided: false,
+    ate: false,
     gameStarted: false,
     setDirection: function(input) {
         if (input === 0) {
@@ -85,17 +86,34 @@ const game = {
         document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("snake-head");
 
         if (this.direction === 0) {
-            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveUp");
+            if (this.ate) {
+                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveEatUp");
+                this.ate = false;
+            } else {
+                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveUp");
+            }
             document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
         } else if (this.direction === 1) {
-            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveRight");
-            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
+            if (this.ate) {
+                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveEatRight");
+                this.ate = false;
+            } else {
+                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveRight");
+            }            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
         } else if (this.direction === 2) {
-            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveDown");
-            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
+            if (this.ate) {
+                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveEatDown");
+                this.ate = false;
+            } else {
+                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveDown");
+            }            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
         } else if (this.direction === 3) {
-            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveLeft");
-            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
+            if (this.ate) {
+                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveEatLeft");
+                this.ate = false;
+            } else {
+                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveLeft");
+            }            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
         }
 
         if (this.snake.length > 1) {
@@ -105,22 +123,22 @@ const game = {
 
             for (let k = 1; k < this.oldSnake.length; k++) {
                 if (this.oldSnake[k][0] - this.snake[k][0] === -1) {
-                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.remove("moveRight", "moveLeft", "moveUp", "moveDown");
+                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.remove("moveRight", "moveLeft", "moveUp", "moveDown", "moveEatRight", "moveEatLeft", "moveEatDown", "moveEatUp");
                     void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("moveRight");
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationDuration = `${this.speed}ms`;
                 } else if (this.oldSnake[k][0] - this.snake[k][0] === 1) {
-                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.remove("moveRight", "moveLeft", "moveUp", "moveDown");
+                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.remove("moveRight", "moveLeft", "moveUp", "moveDown", "moveEatRight", "moveEatLeft", "moveEatDown", "moveEatUp");
                     void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("moveLeft");
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationDuration = `${this.speed}ms`;
                 } else if (this.oldSnake[k][1] - this.snake[k][1] === -1) {
-                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.remove("moveRight", "moveLeft", "moveUp", "moveDown");
+                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.remove("moveRight", "moveLeft", "moveUp", "moveDown", "moveEatRight", "moveEatLeft", "moveEatDown", "moveEatUp");
                     void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("moveDown");
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationDuration = `${this.speed}ms`;
                 } else if (this.oldSnake[k][1] - this.snake[k][1] === 1) {
-                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.remove("moveRight", "moveLeft", "moveUp", "moveDown");
+                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.remove("moveRight", "moveLeft", "moveUp", "moveDown", "moveEatRight", "moveEatLeft", "moveEatDown", "moveEatUp");
                     void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("moveUp");
                     document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationDuration = `${this.speed}ms`;
@@ -198,7 +216,7 @@ const game = {
                 this.speed = 100;
             }
             
-
+            this.ate = true;
             document.getElementById("currentScore").textContent = `${this.snake.length - 1}`;
         }
 
