@@ -252,4 +252,9 @@ const checkKey = function(e) {
 
 document.onkeydown = checkKey;
 
+document.getElementById("touchUp").setAttribute("onclick", "game.setDirection(0);");
+document.getElementById("touchRight").setAttribute("onclick", "game.setDirection(1);");
+document.getElementById("touchDown").setAttribute("onclick", "game.setDirection(2);");
+document.getElementById("touchLeft").setAttribute("onclick", "game.setDirection(3);");
+
 game.renderButton();

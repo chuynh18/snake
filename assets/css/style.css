@@ -28,6 +28,22 @@ body {
     font-size: 32pt;
 }
 
+#touch-controls {
+    display: none;
+    margin: auto;
+    text-align: center;
+}
+
+.touch-row {
+    font-size: 18pt;
+}
+
+.touch-control {
+    border-style: solid;
+    margin: 10px;
+    background-color: gray;
+}
+
 #startButton {
     font-size: 24pt;
     border-style: solid;
@@ -150,6 +166,10 @@ body {
 }
 
 @media only screen and (max-width: 750px) {
+    #touch-controls {
+        display: inline-block;
+    }
+
     .grid-item {
         width: 40px;
     }
