@@ -55,6 +55,12 @@ const game = {
     generateFruit: function() {
         this.fruit[0] = Math.floor(Math.random() * 17);
         this.fruit[1] = Math.floor(Math.random() * 15);
+
+        for (let i = 0; i < this.snake.length; i++) {
+            if (this.fruit[0] === this.snake[i][0] && this.fruit[1] === this.snake[i][1]) {
+                this.generateFruit();
+            }
+        }
     },
     reset: function() {
         this.collided = false;
@@ -208,18 +214,17 @@ const game = {
         this.move();
         this.gameStarted = true;
         this.renderButton();
+        document.getElementById("board").focus();
     },
     renderButton: function() {
         const startButton = document.getElementById("startButton");
 
         if (this.collided) {
-            startButton.disabled = false;
             startButton.setAttribute("onclick", "game.reset();game.start();")
         } else if (!this.gameStarted) {
-            startButton.disabled = false;
             startButton.setAttribute("onclick", "game.start();");
         } else if (this.gameStarted) {
-            startButton.disabled = true;
+            startButton.setAttribute("onclick", "");
         }
     }
 };

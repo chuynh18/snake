@@ -33,7 +33,31 @@ button {
     margin: 0 5px;
 }
 
+#startButton {
+    font-size: 24pt;
+    border-style: solid;
+    margin: 0px 5px;
+    background-color: gray; 
+    border-top-color: darkblue;
+    border-left-color: darkblue;
+    border-bottom-color: lightblue;
+    border-right-color: lightblue;
+}
+
+#startButton:hover {
+    background-color: lightgray;
+}
+
+#startButton:active {
+    background-color: blue;
+    border-top-color: lightblue;
+    border-left-color: lightblue;
+    border-bottom-color: darkblue;
+    border-right-color: darkblue;
+}
+
 #game-container {
+    margin-top: 10px;
     position: relative;
 }
 
