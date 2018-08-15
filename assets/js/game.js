@@ -1,13 +1,14 @@
 "use strict";
 
 const game = {
-    speed: 300,
+    speed: 420,
     direction: 0, // 0 is up, 1 is right, 2 is down, 3 is left
     highScore: 1,
     snake: [[8,12]],
+    oldSnake: null,
     fruit: [null, null],
-    ateFruit: false,
     collided: false,
+    gameStarted: false,
     setDirection: function(input) {
         if (input === 0) {
             this.direction = 0;
@@ -40,7 +41,8 @@ const game = {
         this.fruit[1] = Math.floor(Math.random() * 15);
     },
     reset: function() {
-        this.speed = 500;
+        this.collided = false;
+        this.speed = 420;
         this.direction = 0;
         this.snake.length = 1;
         this.snake[0][0] = 8;
@@ -51,27 +53,60 @@ const game = {
     render: function() {
         for (let i = 0; i < 17; i++) {
             for (let j = 0; j < 15; j++) {
-                document.getElementById(`${i}-${j}`).classList.remove("snake-head", "snake-body", "fruit");
+                document.getElementById(`${i}-${j}`).classList.remove("snake-head", "snake-body", "fruit", "moveUp", "moveRight", "moveDown", "moveLeft");
             }
         }
 
-        console.log(`${this.fruit[0]}-${this.fruit[1]}`);
         document.getElementById(`${this.fruit[0]}-${this.fruit[1]}`).classList.add("fruit");
         document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("snake-head");
+
+        if (this.direction === 0) {
+            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveUp");
+        } else if (this.direction === 1) {
+            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveRight");
+        } else if (this.direction === 2) {
+            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveDown");
+        } else if (this.direction === 3) {
+            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveLeft");
+        }
 
         if (this.snake.length > 1) {
             for (let k = 1; k < this.snake.length; k++) {
                 document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("snake-body");
+            }
+
+            for (let k = 1; k < this.oldSnake.length; k++) {
+                if (this.oldSnake[k][0] - this.snake[k][0] === -1) {
+                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.remove("moveRight", "moveLeft", "moveUp", "moveDown");
+                    void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
+                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("moveRight");
+                } else if (this.oldSnake[k][0] - this.snake[k][0] === 1) {
+                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.remove("moveRight", "moveLeft", "moveUp", "moveDown");
+                    void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
+                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("moveLeft");
+                } else if (this.oldSnake[k][1] - this.snake[k][1] === -1) {
+                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.remove("moveRight", "moveLeft", "moveUp", "moveDown");
+                    void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
+                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("moveDown");
+                } else if (this.oldSnake[k][1] - this.snake[k][1] === 1) {
+                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.remove("moveRight", "moveLeft", "moveUp", "moveDown");
+                    void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
+                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("moveUp");
+                } 
             }
         }
     },
     move: function() {
         let lastLocation;
 
+        this.oldSnake = [...this.snake];
+
         if (this.direction === 0) {
             if (this.snake[0][1] === 0) {
                 console.log("You collided with the wall!");
                 this.collided = true;
+                this.gameStarted = false;
+                this.renderButton();
             } else {
                 this.snake.unshift([this.snake[0][0], this.snake[0][1] - 1]);
             lastLocation = this.snake.pop();
@@ -80,6 +115,8 @@ const game = {
             if (this.snake[0][0] === 16) {
                 console.log("You collided with the wall!");
                 this.collided = true;
+                this.gameStarted = false;
+                this.renderButton();
             } else {
                 this.snake.unshift([this.snake[0][0] + 1, this.snake[0][1]]);
                 lastLocation = this.snake.pop();
@@ -88,6 +125,8 @@ const game = {
             if (this.snake[0][1] === 14) {
                 console.log("You collided with the wall!");
                 this.collided = true;
+                this.gameStarted = false;
+                this.renderButton();
             } else {
                 this.snake.unshift([this.snake[0][0], this.snake[0][1] + 1]);
                 lastLocation = this.snake.pop();
@@ -96,22 +135,29 @@ const game = {
             if (this.snake[0][0] === 0) {
                 console.log("You collided with the wall!");
                 this.collided = true;
+                this.gameStarted = false;
+                this.renderButton();
             } else {
                 this.snake.unshift([this.snake[0][0] - 1, this.snake[0][1]]);
                 lastLocation = this.snake.pop();
             }
         }
 
-        if (this.ateFruit) {
-            this.ateFruit = false;
-            this.snake.push(lastLocation);
-        }
-
         if (this.checkSelfCollision()) {
             console.log("You collided with yourself!");
             this.collided = true;
+            this.gameStarted = false;
+            this.renderButton();
         }
-        this.eatFruit();
+        
+        // upon eating fruit
+        if (this.snake[0][0] === this.fruit[0] && this.snake[0][1] === this.fruit[1]) {
+            this.snake.push(lastLocation);
+            this.generateFruit();
+            this.newHighScore();
+            this.speed -= 9;
+        }
+
         this.render();
 
         if (!this.collided) {
@@ -122,17 +168,30 @@ const game = {
             console.log("Game over.");
         }
     },
-    eatFruit: function() {
-        if (this.snake[0][0] === this.fruit[0] && this.snake[0][1] === this.fruit[1]) {
-            this.ateFruit = true;
-            this.generateFruit();
-            this.newHighScore();
-        }
-    },
     newHighScore: function() {
         if (this.snake.length > this.highScore) {
             this.highScore = this.snake.length;
             console.log(`New high score: ${this.highScore}`);
+        }
+    },
+    start: function() {
+        this.generateFruit();
+        this.render();
+        this.move();
+        this.gameStarted = true;
+        this.renderButton();
+    },
+    renderButton: function() {
+        const startButton = document.getElementById("startButton");
+
+        if (this.collided) {
+            startButton.disabled = false;
+            startButton.setAttribute("onclick", "game.reset();game.start();")
+        } else if (!this.gameStarted) {
+            startButton.disabled = false;
+            startButton.setAttribute("onclick", "game.start();");
+        } else if (this.gameStarted) {
+            startButton.disabled = true;
         }
     }
 };
@@ -158,10 +217,6 @@ const checkKey = function(e) {
     }
 }
 
-const start = function() {
-    game.generateFruit();
-    game.render();
-}
-
-start();
 document.onkeydown = checkKey;
+
+game.renderButton();
