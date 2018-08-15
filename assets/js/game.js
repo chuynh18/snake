@@ -72,6 +72,7 @@ const game = {
         this.fruit[0] = null;
         this.fruit[1] = null;
         document.getElementById("openDevPanel").textContent = "Snake";
+        document.getElementsByTagName("html")[0].style.backgroundColor = "#778899";
     },
     render: function() {
         for (let i = 0; i < 17; i++) {
@@ -129,6 +130,7 @@ const game = {
 
         if (this.collided) {
             document.getElementById("openDevPanel").textContent = "You lose.";
+            document.getElementsByTagName("html")[0].style.backgroundColor = "#aa8484";
         }
     },
     move: function() {
