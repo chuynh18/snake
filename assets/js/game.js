@@ -82,8 +82,9 @@ const game = {
         }
     },
     render: function() {
-        for (let i = 0; i < this.oldSnake.length; i++) {
-            document.getElementById(`${this.oldSnake[i][0]}-${this.oldSnake[i][1]}`).classList.remove("snake-head", "snake-body", "moveUp", "moveRight", "moveDown", "moveLeft", "moveEatRight", "moveEatLeft", "moveEatDown", "moveEatUp");
+        document.getElementById(`${this.oldSnake[this.oldSnake.length-1][0]}-${this.oldSnake[this.oldSnake.length-1][1]}`).classList.remove("snake-head", "snake-body", "moveUp", "moveRight", "moveDown", "moveLeft");
+        if (this.snake.length > 1) {
+            document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).classList.remove("moveEatRight", "moveEatLeft", "moveEatDown", "moveEatUp");
         }
 
         document.getElementById(`${this.fruit[0]}-${this.fruit[1]}`).classList.add("fruit");
@@ -133,35 +134,23 @@ const game = {
                 document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("snake-body");
             }
 
-            for (let k = 1; k < this.oldSnake.length; k++) {
-                if (this.oldSnake[k][0] - this.snake[k][0] === -1) {
-                    // void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
-                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("moveRight");
-                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationDuration = `${this.speed}ms`;
-                    if (k === 1) {
-                        document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationIterationCount = this.snake.length;
-                    }
-                } else if (this.oldSnake[k][0] - this.snake[k][0] === 1) {
-                    // void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
-                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("moveLeft");
-                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationDuration = `${this.speed}ms`;
-                    if (k === 1) {
-                        document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationIterationCount = this.snake.length;
-                    }
-                } else if (this.oldSnake[k][1] - this.snake[k][1] === -1) {
-                    // void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
-                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("moveDown");
-                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationDuration = `${this.speed}ms`;
-                    if (k === 1) {
-                        document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationIterationCount = this.snake.length;
-                    }
-                } else if (this.oldSnake[k][1] - this.snake[k][1] === 1) {
-                    // void document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).offsetWidth;
-                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("moveUp");
-                    document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationDuration = `${this.speed}ms`;
-                    if (k === 1) {
-                        document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).style.animationIterationCount = this.snake.length;
-                    }
+            if (this.oldSnake.length > 1) {
+                if (this.oldSnake[1][0] - this.snake[1][0] === -1) {
+                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).classList.add("moveRight");
+                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationDuration = `${this.speed}ms`;
+                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationIterationCount = this.snake.length;
+                } else if (this.oldSnake[1][0] - this.snake[1][0] === 1) {
+                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).classList.add("moveLeft");
+                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationDuration = `${this.speed}ms`;
+                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationIterationCount = this.snake.length;
+                } else if (this.oldSnake[1][1] - this.snake[1][1] === -1) {
+                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).classList.add("moveDown");
+                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationDuration = `${this.speed}ms`;
+                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationIterationCount = this.snake.length;
+                } else if (this.oldSnake[1][1] - this.snake[1][1] === 1) {
+                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).classList.add("moveUp");
+                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationDuration = `${this.speed}ms`;
+                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationIterationCount = this.snake.length;
                 } 
             }
         }
