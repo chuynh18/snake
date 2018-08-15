@@ -25,14 +25,14 @@ I was removing and adding the animation class to each snake segment as the snake
 
 ![unoptimized animations](assets/img/unoptimized.png)
 
+Note that these page redraws were in addition to other required page redraws.
+
 __After optimization__
 
-While the work is incomplete, I've refactored the code to apply the animation to the snake's body only once, but to repeat it `snake.length` number of times.  Further refactoring will be required to eliminate the flickering.  That being said, I'm already reaping the performance improvements.  On my laptop, page redraws are now less frequent and no longer tied to game ticks.  Page redraws take less than 3 ms, and game logic now takes less than half a millisecond!
-
-Page redraws are now less than 3 ms:
+While the work is incomplete, I've refactored the code to apply the animation to the snake's body only once, but to repeat it `snake.length` number of times.  Further refactoring will be required to eliminate the flickering.  That being said, I'm already reaping the performance improvements.  Executing the game's core logic no longer kicks off page redrawing.  The page is only rerendered as needed, which only takes under 3 milliseconds.
 
 ![optimized animations](assets/img/optimized.png)
 
-Game ticks are less than half a millisecond:  (note that this is out of date.  Game ticks are now less than 0.4 ms; evaluating keypresses takes significantly longer at slightly over 1 ms.)
+Game ticks are only 0.4 milliseconds:  (Actually, after further optimization, they're now less than 0.4 ms; evaluating keypresses takes significantly longer at slightly over 1 ms.)
 
 ![optimized game code](assets/img/optimized2.png)
