@@ -11,8 +11,8 @@ I wrote this mainly because I wanted to make a "real-time" game.  Turns out it w
 
 Note that `style-min.css` and `game-min.js` are obviously minified, but `index.html` is also minified.  See `index-full.html` for the original file.
 
-`index-full.html` + `style.css` + `game.js` together are 76.1 KB (non-gzipped).
-`index.html` + `style-min.css` + `game-min.js` together are 48.1 KB (also non-gzipped).
+`index-full.html` + `style.css` + `game.js` together are 76.4 KB (non-gzipped).
+`index.html` + `style-min.css` + `game-min.js` together are 48.4 KB (also non-gzipped).
 
 Optimization
 ------------
