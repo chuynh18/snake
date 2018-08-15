@@ -21,9 +21,13 @@ Originally, I did a poor job of adding CSS animations in.  All the top search en
 
 I was removing and adding the animation class to each snake segment as the snake moved along.  On my laptop running Chrome, this was approximately a half millisecond penalty per page reflow.  In other words, I was paying a linear time penalty (0.5 ms * `snake.length`), in addition to the cost of the game logic.  On lower-powered mobile devices, this is even worse; on my phone, it resulted in the performance noticeably suffering when `snake.length > 8`.
 
+__Before optimization__
+
 ![unoptimized animations](assets/img/unoptimized.png)
 
 While the work is incomplete, I've refactored the code to apply the animation to the snake's body only once, but to repeat it `snake.length` number of times.  Further refactoring will be required to eliminate the flickering.  That being said, I'm already reaping the performance improvements.  On my laptop, page redraws are now less frequent and no longer tied to game ticks.  Page redraws take less than 3 ms, and game logic now takes less than half a millisecond!
+
+__After optimization__
 
 Page redraws are now less than 3 ms:
 
