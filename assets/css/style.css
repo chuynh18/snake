@@ -101,10 +101,12 @@ body {
 
 .snake-head {
     background-color: #16bd2c;
+    position: relative;
 }
 
 .snake-body {
-    background-color: #096800
+    background-color: #096800;
+    position: relative;
 }
 
 #scores {
@@ -121,53 +123,35 @@ body {
 
 .moveUp {
     animation-name: up;
-    animation-duration: 200ms;
-    animation-timing-function: linear;
-    position: relative;
-}
+    animation-timing-function: linear;}
 
 .moveEatUp {
     animation-name: eatUp;
-
-    animation-timing-function: linear;
-    position: relative;
-}
+    animation-timing-function: linear;}
 
 .moveRight {
     animation-name: mRight;
-    animation-timing-function: linear;
-    position: relative;
-}
+    animation-timing-function: linear;}
 
 .moveEatRight {
     animation-name: eatRight;
-    animation-timing-function: linear;
-    position: relative;
-}
+    animation-timing-function: linear;}
 
 .moveDown {
     animation-name: down;
-    animation-timing-function: linear;
-    position: relative;
-}
+    animation-timing-function: linear;}
 
 .moveEatDown {
     animation-name: eatDown;
-    animation-timing-function: linear;
-    position: relative;
-}
+    animation-timing-function: linear;}
 
 .moveLeft {
     animation-name: mLeft;
-    animation-timing-function: linear;
-    position: relative;
-}
+    animation-timing-function: linear;}
 
 .moveEatLeft {
     animation-name: eatLeft;
-    animation-timing-function: linear;
-    position: relative;
-}
+    animation-timing-function: linear;}
 
 @keyframes fruitGrow {
     0% {transform: scale(0);}

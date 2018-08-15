@@ -74,6 +74,12 @@ const game = {
         this.fruit[1] = null;
         document.getElementById("openDevPanel").textContent = "Snake";
         document.getElementsByTagName("html")[0].style.backgroundColor = "#778899";
+
+        for (let i = 0; i < 17; i++) {
+            for (let j = 0; j < 15; j++) {
+                document.getElementById(`${i}-${j}`).classList.remove("snake-head", "snake-body", "fruit");
+            }
+        }
     },
     render: function() {
         for (let i = 0; i < this.oldSnake.length; i++) {
@@ -90,6 +96,7 @@ const game = {
             } else {
                 document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveUp");
             }
+
             document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
         } else if (this.direction === 1) {
             if (this.ate) {
@@ -97,21 +104,27 @@ const game = {
                 this.ate = false;
             } else {
                 document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveRight");
-            }            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
+            }
+            
+            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
         } else if (this.direction === 2) {
             if (this.ate) {
                 document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveEatDown");
                 this.ate = false;
             } else {
                 document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveDown");
-            }            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
+            }
+            
+            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
         } else if (this.direction === 3) {
             if (this.ate) {
                 document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveEatLeft");
                 this.ate = false;
             } else {
                 document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveLeft");
-            }            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
+            }
+            
+            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
         }
 
         if (this.snake.length > 1) {
