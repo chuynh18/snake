@@ -23,6 +23,12 @@ I was removing and adding the animation class to each snake segment as the snake
 
 ![unoptimized animations](assets/img/unoptimized.png)
 
-While the work is incomplete, I've refactored the code to apply the animation to the snake's body only once, but to repeat it `snake.length` number of times.  Further refactoring will be required to eliminate the flickering.  That being said, I'm already reaping the performance improvements.  On my laptop, each game tick now takes less than 3 ms, no matter how long the snake is.
+While the work is incomplete, I've refactored the code to apply the animation to the snake's body only once, but to repeat it `snake.length` number of times.  Further refactoring will be required to eliminate the flickering.  That being said, I'm already reaping the performance improvements.  On my laptop, page redraws are now less frequent and no longer tied to game ticks.  Page redraws take less than 3 ms, and game logic now takes less than half a millisecond!
+
+Page redraws are now less than 3 ms:
 
 ![optimized animations](assets/img/optimized.png)
+
+Game ticks are less than half a millisecond:
+
+![optimized game code](assets/img/optimized2.png)
