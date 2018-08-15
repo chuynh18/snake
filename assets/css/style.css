@@ -47,18 +47,18 @@ button {
 }
 
 .grid-item {
-    width: 45px;
+    width: 42px;
 }
 
 .game-cell {
-    height: 45px;
+    height: 42px;
     border-style: solid;
     border-width: 1px;
     border-color: #3b4044;
 }
 
 .snake-segment {
-    border-radius: 42px;
+    border-radius: 40px;
     height: 95%;
     width: 95%;
     background-color: #2196F3;
