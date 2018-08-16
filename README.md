@@ -37,7 +37,7 @@ While the work is incomplete, I've refactored the code to apply the animation to
 
 ![optimized animations](assets/img/optimized.png)
 
-Game ticks are only 0.4 milliseconds:  (Actually, after further optimization, they're now less than 0.4 ms; evaluating keypresses takes significantly longer at slightly over 1 ms.)
+Game ticks are only 0.4 milliseconds:  (Actually, after further optimization, they're now less than 0.4 ms; evaluating keypresses takes significantly longer at slightly over 1 ms.  This is because keypresses seem to trigger page reflows; I'm not entirely sure why.  Something to look into!)
 
 ![optimized game code](assets/img/optimized2.png)
 
