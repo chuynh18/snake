@@ -64,105 +64,103 @@ const game = {
         }
     },
     reset: function() {
+        document.getElementById(`${this.fruit[0]}-${this.fruit[1]}`).classList.remove("fruit");
+
+        for (let i = 0; i < this.snake.length; i++) {
+            document.getElementById(`${this.snake[i][0]}-${this.snake[i][1]}`).classList.remove("snake-head", "snake-body", "fruit", "moveEatRight", "moveEatLeft", "moveEatDown", "moveEatUp", "moveUp", "moveRight", "moveDown", "moveLeft");
+        }
+
         this.collided = false;
         this.speed = 420;
         this.direction = 0;
         this.snake.length = 1;
         this.snake[0][0] = 8;
         this.snake[0][1] = 12;
+        this.oldSnake = [...this.snake];
         this.fruit[0] = null;
         this.fruit[1] = null;
-        document.getElementById("openDevPanel").textContent = "Snake";
+        document.getElementById("snakeTitle").textContent = "Snake";
         document.getElementsByTagName("html")[0].style.backgroundColor = "#778899";
-
-        for (let i = 0; i < 17; i++) {
-            for (let j = 0; j < 15; j++) {
-                document.getElementById(`${i}-${j}`).classList.remove("snake-head", "snake-body", "fruit");
-            }
-        }
     },
     render: function() {
-        document.getElementById(`${this.oldSnake[this.oldSnake.length-1][0]}-${this.oldSnake[this.oldSnake.length-1][1]}`).classList.remove("snake-head", "snake-body", "moveUp", "moveRight", "moveDown", "moveLeft");
-        if (this.snake.length > 1) {
-            document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).classList.remove("moveEatRight", "moveEatLeft", "moveEatDown", "moveEatUp");
-        }
-
-        document.getElementById(`${this.fruit[0]}-${this.fruit[1]}`).classList.add("fruit");
-        document.getElementById(`${this.fruit[0]}-${this.fruit[1]}`).style.animationIterationCount = 1;
-        document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("snake-head");
-
-        if (this.direction === 0) {
-            if (this.ate) {
-                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveEatUp");
-                this.ate = false;
-            } else {
-                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveUp");
-            }
-
-            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
-        } else if (this.direction === 1) {
-            if (this.ate) {
-                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveEatRight");
-                this.ate = false;
-            } else {
-                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveRight");
-            }
-            
-            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
-        } else if (this.direction === 2) {
-            if (this.ate) {
-                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveEatDown");
-                this.ate = false;
-            } else {
-                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveDown");
-            }
-            
-            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
-        } else if (this.direction === 3) {
-            if (this.ate) {
-                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveEatLeft");
-                this.ate = false;
-            } else {
-                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveLeft");
-            }
-            
-            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
-        }
-
-        if (this.snake.length > 1) {
-            for (let k = 1; k < this.snake.length; k++) {
-                document.getElementById(`${this.snake[k][0]}-${this.snake[k][1]}`).classList.add("snake-body");
-            }
-
-            if (this.oldSnake.length > 1) {
-                if (this.oldSnake[1][0] - this.snake[1][0] === -1) {
-                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).classList.add("moveRight");
-                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationDuration = `${this.speed}ms`;
-                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationIterationCount = this.snake.length;
-                } else if (this.oldSnake[1][0] - this.snake[1][0] === 1) {
-                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).classList.add("moveLeft");
-                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationDuration = `${this.speed}ms`;
-                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationIterationCount = this.snake.length;
-                } else if (this.oldSnake[1][1] - this.snake[1][1] === -1) {
-                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).classList.add("moveDown");
-                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationDuration = `${this.speed}ms`;
-                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationIterationCount = this.snake.length;
-                } else if (this.oldSnake[1][1] - this.snake[1][1] === 1) {
-                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).classList.add("moveUp");
-                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationDuration = `${this.speed}ms`;
-                    document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationIterationCount = this.snake.length;
-                } 
-            }
-        }
-
         if (this.collided) {
-            document.getElementById("openDevPanel").textContent = "You lose.";
+            document.getElementById("snakeTitle").textContent = "You lose.";
             document.getElementsByTagName("html")[0].style.backgroundColor = "#aa8484";
+        } else {
+            document.getElementById(`${this.oldSnake[this.oldSnake.length-1][0]}-${this.oldSnake[this.oldSnake.length-1][1]}`).classList.remove("snake-head", "snake-body", "moveUp", "moveRight", "moveDown", "moveLeft");
+            if (this.snake.length > 1) {
+                document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).classList.remove("moveEatRight", "moveEatLeft", "moveEatDown", "moveEatUp");
+            }
+    
+            document.getElementById(`${this.fruit[0]}-${this.fruit[1]}`).classList.add("fruit");
+            document.getElementById(`${this.fruit[0]}-${this.fruit[1]}`).style.animationIterationCount = 1;
+            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("snake-head");
+    
+            if (this.direction === 0) {
+                if (this.ate) {
+                    document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveEatUp");
+                    this.ate = false;
+                } else {
+                    document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveUp");
+                }
+    
+                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
+            } else if (this.direction === 1) {
+                if (this.ate) {
+                    document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveEatRight");
+                    this.ate = false;
+                } else {
+                    document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveRight");
+                }
+                
+                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
+            } else if (this.direction === 2) {
+                if (this.ate) {
+                    document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveEatDown");
+                    this.ate = false;
+                } else {
+                    document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveDown");
+                }
+                
+                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
+            } else if (this.direction === 3) {
+                if (this.ate) {
+                    document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveEatLeft");
+                    this.ate = false;
+                } else {
+                    document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("moveLeft");
+                }
+                
+                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
+            }
+    
+            if (this.snake.length > 1) {
+                document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).classList.add("snake-body");
+
+                if (this.oldSnake.length > 1) {
+                    if (this.oldSnake[1][0] - this.snake[1][0] === -1) {
+                        document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).classList.add("moveRight");
+                        document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationDuration = `${this.speed}ms`;
+                        document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationIterationCount = this.snake.length;
+                    } else if (this.oldSnake[1][0] - this.snake[1][0] === 1) {
+                        document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).classList.add("moveLeft");
+                        document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationDuration = `${this.speed}ms`;
+                        document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationIterationCount = this.snake.length;
+                    } else if (this.oldSnake[1][1] - this.snake[1][1] === -1) {
+                        document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).classList.add("moveDown");
+                        document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationDuration = `${this.speed}ms`;
+                        document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationIterationCount = this.snake.length;
+                    } else if (this.oldSnake[1][1] - this.snake[1][1] === 1) {
+                        document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).classList.add("moveUp");
+                        document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationDuration = `${this.speed}ms`;
+                        document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationIterationCount = this.snake.length;
+                    } 
+                }
+            }
         }
     },
     move: function() {
         let lastLocation;
-
         this.oldSnake = [...this.snake];
 
         if (this.direction === 0) {
@@ -173,7 +171,7 @@ const game = {
                 this.renderButton();
             } else {
                 this.snake.unshift([this.snake[0][0], this.snake[0][1] - 1]);
-            lastLocation = this.snake.pop();
+                lastLocation = this.snake.pop();
             }
         } else if (this.direction === 1) {
             if (this.snake[0][0] === 16) {
