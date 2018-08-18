@@ -30,7 +30,7 @@ I was removing and adding the animation class to each snake segment as the snake
 
 ![unoptimized animations](assets/img/unoptimized.png)
 
-Note that these page redraws were in addition to other required page redraws.
+Note that these page redraws were in addition to other required page redraws, **and that the total time taken by the function calls above is approximately 10 milliseconds**.
 
 Here's a sample of 5 seconds of the unoptimized version of snake running:
 
