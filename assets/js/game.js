@@ -79,6 +79,7 @@ const game = {
         this.oldSnake = [...this.snake];
         this.fruit[0] = null;
         this.fruit[1] = null;
+        document.getElementById("currentScore").textContent = `${this.snake.length - 1}`;
         document.getElementById("snakeTitle").textContent = "Snake";
         document.getElementsByTagName("html")[0].style.backgroundColor = "#778899";
     },
