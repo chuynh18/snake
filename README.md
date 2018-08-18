@@ -14,7 +14,7 @@ Note that `style-min.css` and `game-min.js` are obviously minified, but `index.h
 ~~`index-full.html` + `style.css` + `game.js` together are 76.4 KB (non-gzipped).~~<br>
 ~~`index.html` + `style-min.css` + `game-min.js` together are 48.4 KB (also non-gzipped).~~
 
-**Update**:  There was a lot of repetitive HTML that was responsible for the game board that I originally copied and pasted.  Because it was so repetitive, I now generate the HTML for the game board via JavaScript.  The filesizes are now as follows:
+**Update**:  There was a lot of repetitive HTML that was responsible for drawing the game board.  That HTML is now dynamically generated with JavaScript.  The filesizes are now as follows:
 
 `index-full.html` + `style.css` + `game.js` together are 39 KB (non-gzipped).<br>
 `index.html` + `style-min.css` + `game-min.js` together are 28.6 KB (also non-gzipped).
