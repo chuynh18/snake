@@ -289,6 +289,31 @@ const checkKey = function(e) {
     }
 }
 
+const generateGameBoard = function() {
+    const gameBoard = document.getElementById("board");
+
+    for (let i = 0; i < 17; i++) {
+        const gameCol = document.createElement("div");
+        gameCol.classList.add("grid-item", "game-column");
+        gameCol.id = i;
+
+        for (let j = 0; j < 15; j++) {
+            const gameCell = document.createElement("div");
+            const snakeSegment = document.createElement("div");
+            gameCell.classList.add("game-cell");
+            snakeSegment.classList.add("snake-segment");
+            snakeSegment.id = `${i}-${j}`;
+
+            gameCell.appendChild(snakeSegment);
+            gameCol.appendChild(gameCell);
+        }
+
+        gameBoard.appendChild(gameCol);
+    }
+}
+
+generateGameBoard();
+
 document.onkeydown = checkKey;
 
 document.getElementById("touchUp").setAttribute("onclick", "game.setDirection(0);");
