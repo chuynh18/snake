@@ -50,4 +50,4 @@ Here's a sample of 5 seconds of the optimized version of snake running, so you c
 
 ![unoptimized time graph](assets/img/timespentoptimized.png)
 
-While it's true that this doesn't seem impressive (idle time in the unoptimized version is about 3.9 seconds, whereas idle time is now almost 4.3 seconds), the game runs considerably more smoothly now, especially on mobile devices.  The unoptimized version would hitch every game tick (which is every 100 ms when the snake is moving its fastest).  The optimized version does not hitch anymore, even on my 2013 Nexus 7 tablet (an older mobile devices).
+While it's true that this doesn't seem impressive (idle time in the unoptimized version is about 3.9 seconds, whereas idle time is now almost 4.3 seconds), the game runs considerably more smoothly now, especially on mobile devices.  The unoptimized version would hitch every game tick (which is every 100 ms when the snake is moving its fastest).  The optimized version does not hitch anymore, even on my 2013 Nexus 7 tablet (an older mobile device).
