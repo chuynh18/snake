@@ -3,6 +3,7 @@
 const game = {
     speed: 420,
     direction: 0, // 0 is up, 1 is right, 2 is down, 3 is left
+    previousDirection: 0,
     highScore: 0,
     snake: [[8,12]],
     oldSnake: [[8,12]],
