@@ -47,8 +47,9 @@ const game = {
     reset: function() {
         document.getElementById(`${this.fruit[0]}-${this.fruit[1]}`).classList.remove("fruit");
 
-        for (let i = 0; i < this.snake.length; i++) {
-            document.getElementById(`${this.snake[i][0]}-${this.snake[i][1]}`).classList.remove("snake-head", "snake-body", "fruit", "moveEatRight", "moveEatLeft", "moveEatDown", "moveEatUp", "moveUp", "moveRight", "moveDown", "moveLeft");
+        for (let i = 0; i < this.oldSnake.length; i++) {
+            document.getElementById(`${this.oldSnake[i][0]}-${this.oldSnake[i][1]}`).classList.remove("snake-head", "snake-body", "fruit", "moveEatRight", "moveEatLeft", "moveEatDown", "moveEatUp", "moveUp", "moveRight", "moveDown", "moveLeft");
+            document.getElementById(`${this.oldSnake[i][0]}-${this.oldSnake[i][1]}`).style.animationIterationCount = 1;
         }
 
         this.collided = false;
