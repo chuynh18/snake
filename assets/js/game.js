@@ -1,5 +1,9 @@
 "use strict";
 
+const getDOMCoords = function (target, index) {
+    return document.getElementById(`${game[target][index][0]}-${game[target][index][1]}`);
+}
+
 const game = {
     speed: 420,
     direction: 0, // 0 is up, 1 is right, 2 is down, 3 is left
@@ -10,7 +14,7 @@ const game = {
     collided: false,
     ate: false,
     gameStarted: false,
-    setDirection: function(input, antiInput) {
+    setDirection: function(input) {
         if (this.snake.length < 2) {
             this.direction = input;
         // do not accept input if the player tries to reverse into themselves (handles the naive case and multiple inputs within one game tick)
@@ -48,8 +52,8 @@ const game = {
         document.getElementById(`${this.fruit[0]}-${this.fruit[1]}`).classList.remove("fruit");
 
         for (let i = 0; i < this.oldSnake.length; i++) {
-            document.getElementById(`${this.oldSnake[i][0]}-${this.oldSnake[i][1]}`).classList.remove("snake-head", "snake-body", "fruit", "moveEatRight", "moveEatLeft", "moveEatDown", "moveEatUp", "moveUp", "moveRight", "moveDown", "moveLeft");
-            document.getElementById(`${this.oldSnake[i][0]}-${this.oldSnake[i][1]}`).style.animationIterationCount = 1;
+            getDOMCoords("oldSnake", i).classList.remove("snake-head", "snake-body", "fruit", "moveEatRight", "moveEatLeft", "moveEatDown", "moveEatUp", "moveUp", "moveRight", "moveDown", "moveLeft");
+            getDOMCoords("oldSnake", i).style.animationIterationCount = 1;
         }
 
         this.collided = false;
@@ -68,19 +72,19 @@ const game = {
     render: function() {
         const appendClassHead = direction => {
             if (this.ate) {
-                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add(`moveEat${direction}`);
+                getDOMCoords("snake", 0).classList.add(`moveEat${direction}`);
                 this.ate = false;
             } else {
-                document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add(`move${direction}`);
+                getDOMCoords("snake", 0).classList.add(`move${direction}`);
             }
 
-            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).style.animationDuration = `${this.speed}ms`;
+            getDOMCoords("snake", 0).style.animationDuration = `${this.speed}ms`;
         }
 
         const appendClassBody = direction => {
-            document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).classList.add(`move${direction}`);
-            document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationDuration = `${this.speed}ms`;
-            document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).style.animationIterationCount = this.snake.length;
+            getDOMCoords("snake", 1).classList.add(`move${direction}`);
+            getDOMCoords("snake", 1).style.animationDuration = `${this.speed}ms`;
+            getDOMCoords("snake", 1).style.animationIterationCount = this.snake.length;
         }
 
         if (this.collided) {
@@ -94,12 +98,12 @@ const game = {
         } else {
             document.getElementById(`${this.oldSnake[this.oldSnake.length-1][0]}-${this.oldSnake[this.oldSnake.length-1][1]}`).classList.remove("snake-head", "snake-body", "moveUp", "moveRight", "moveDown", "moveLeft");
             if (this.snake.length > 1) {
-                document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).classList.remove("moveEatRight", "moveEatLeft", "moveEatDown", "moveEatUp");
+                getDOMCoords("snake", 1).classList.remove("moveEatRight", "moveEatLeft", "moveEatDown", "moveEatUp");
             }
     
             document.getElementById(`${this.fruit[0]}-${this.fruit[1]}`).classList.add("fruit");
             document.getElementById(`${this.fruit[0]}-${this.fruit[1]}`).style.animationIterationCount = 1;
-            document.getElementById(`${this.snake[0][0]}-${this.snake[0][1]}`).classList.add("snake-head");
+            getDOMCoords("snake", 0).classList.add("snake-head");
     
             if (this.direction === 0) {
                 appendClassHead("Up");
@@ -112,7 +116,7 @@ const game = {
             }
     
             if (this.snake.length > 1) {
-                document.getElementById(`${this.snake[1][0]}-${this.snake[1][1]}`).classList.add("snake-body");
+                getDOMCoords("snake", 1).classList.add("snake-body");
 
                 if (this.oldSnake.length > 1) {
                     if (this.oldSnake[1][0] - this.snake[1][0] === -1) {
@@ -195,9 +199,9 @@ const game = {
             document.getElementById("currentScore").textContent = `${this.snake.length - 1}`;
 
             // make it so that the snake's tail isn't missing animations upon eating a fruit
-            if (this.snake.length > 3) {
+            if (this.snake.length > 2) {
                 for (let i = 2; i < this.snake.length - 2; i++) {
-                    document.getElementById(`${this.snake[i][0]}-${this.snake[i][1]}`).style.animationIterationCount++;
+                    getDOMCoords("snake", i).style.animationIterationCount++;
                 }
             }
         }
@@ -245,16 +249,16 @@ const checkKey = function(e) {
     e = e || window.event;
 
     if (e.keyCode == '38') { // up arrow
-        game.setDirection(0, 2);
+        game.setDirection(0);
     }
     else if (e.keyCode == '40') { // down arrow
-        game.setDirection(2, 0);
+        game.setDirection(2);
     }
     else if (e.keyCode == '37') { // left arrow
-       game.setDirection(3, 1);
+       game.setDirection(3);
     }
     else if (e.keyCode == '39') { // right arrow
-       game.setDirection(1, 3);
+       game.setDirection(1);
     }
 }
 
