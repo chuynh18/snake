@@ -3,7 +3,6 @@
 const game = {
     speed: 420,
     direction: 0, // 0 is up, 1 is right, 2 is down, 3 is left
-    previousDirection: null,
     highScore: 0,
     snake: [[8,12]],
     oldSnake: [[8,12]],
@@ -12,14 +11,12 @@ const game = {
     ate: false,
     gameStarted: false,
     setDirection: function(input, antiInput) {
-        if (this.previousDirection !== this.direction) {
-            this.previousDirection = this.direction;
-        }
-
-        if (this.direction !== antiInput) {
+        if (this.snake.length < 3) {
             this.direction = input;
-        } else if (this.snake.length < 3) {
-            this.direction = input;
+        } else if (this.direction !== antiInput) {
+            if ((input === 0 && this.snake[0][1] - 1 !== this.snake[1][1]) || (input === 1 && this.snake[0][0] + 1 !== this.snake[1][0]) || (input === 2 && this.snake[0][1] + 1 !== this.snake[1][1]) || (input === 3 && this.snake[0][0] - 1 !== this.snake[1][0])) {
+                this.direction = input;
+            }
         }
     },
     checkSelfCollision: function() {
@@ -149,42 +146,42 @@ const game = {
         let lastLocation;
         this.oldSnake = [...this.snake];
 
+        const gameOver = (reason) => {
+            if (reason === 0) {
+                console.log("You collided with the wall!");
+            } else if (reason === 1) {
+                console.log("You collided with yourself!");
+            }
+
+            this.collided = true;
+            this.gameStarted = false;
+            this.renderButton();
+        }
+
         if (this.direction === 0) {
             if (this.snake[0][1] === 0) {
-                console.log("You collided with the wall!");
-                this.collided = true;
-                this.gameStarted = false;
-                this.renderButton();
+                gameOver(0);
             } else {
                 this.snake.unshift([this.snake[0][0], this.snake[0][1] - 1]);
                 lastLocation = this.snake.pop();
             }
         } else if (this.direction === 1) {
             if (this.snake[0][0] === 16) {
-                console.log("You collided with the wall!");
-                this.collided = true;
-                this.gameStarted = false;
-                this.renderButton();
+                gameOver(0);
             } else {
                 this.snake.unshift([this.snake[0][0] + 1, this.snake[0][1]]);
                 lastLocation = this.snake.pop();
             }
         } else if (this.direction === 2) {
             if (this.snake[0][1] === 14) {
-                console.log("You collided with the wall!");
-                this.collided = true;
-                this.gameStarted = false;
-                this.renderButton();
+                gameOver(0);
             } else {
                 this.snake.unshift([this.snake[0][0], this.snake[0][1] + 1]);
                 lastLocation = this.snake.pop();
             }
         } else if (this.direction === 3) {
             if (this.snake[0][0] === 0) {
-                console.log("You collided with the wall!");
-                this.collided = true;
-                this.gameStarted = false;
-                this.renderButton();
+                gameOver(0);
             } else {
                 this.snake.unshift([this.snake[0][0] - 1, this.snake[0][1]]);
                 lastLocation = this.snake.pop();
@@ -192,10 +189,7 @@ const game = {
         }
 
         if (this.checkSelfCollision()) {
-            console.log("You collided with yourself!");
-            this.collided = true;
-            this.gameStarted = false;
-            this.renderButton();
+            gameOver(1);
         }
         
         // upon eating fruit
