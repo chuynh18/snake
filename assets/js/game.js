@@ -3,7 +3,7 @@
 const game = {
     speed: 420,
     direction: 0, // 0 is up, 1 is right, 2 is down, 3 is left
-    previousDirection: 0,
+    previousDirection: null,
     highScore: 0,
     snake: [[8,12]],
     oldSnake: [[8,12]],
@@ -11,31 +11,15 @@ const game = {
     collided: false,
     ate: false,
     gameStarted: false,
-    setDirection: function(input) {
-        if (input === 0) {
-            if (this.direction !== 2) {
-                this.direction = 0;
-            } else if (this.snake.length < 3) {
-                this.direction = 0;
-            }
-        } else if (input === 1) {
-            if (this.direction !== 3) {
-                this.direction = 1;
-            } else if (this.snake.length < 3) {
-                this.direction = 1;
-            }
-        } else if (input === 2) {
-            if (this.direction !== 0) {
-                this.direction = 2;
-            } else if (this.snake.length < 3) {
-                this.direction = 2;
-            }
-        } else if (input === 3) {
-            if (this.direction !== 1) {
-                this.direction = 3;
-            } else if (this.snake.length < 3) {
-                this.direction = 3;
-            }
+    setDirection: function(input, antiInput) {
+        if (this.previousDirection !== this.direction) {
+            this.previousDirection = this.direction;
+        }
+
+        if (this.direction !== antiInput) {
+            this.direction = input;
+        } else if (this.snake.length < 3) {
+            this.direction = input;
         }
     },
     checkSelfCollision: function() {
@@ -274,19 +258,19 @@ const checkKey = function(e) {
 
     if (e.keyCode == '38') {
         // up arrow
-        game.setDirection(0);
+        game.setDirection(0, 2);
     }
     else if (e.keyCode == '40') {
         // down arrow
-        game.setDirection(2);
+        game.setDirection(2, 0);
     }
     else if (e.keyCode == '37') {
        // left arrow
-       game.setDirection(3);
+       game.setDirection(3, 1);
     }
     else if (e.keyCode == '39') {
        // right arrow
-       game.setDirection(1);
+       game.setDirection(1, 3);
     }
 }
 
