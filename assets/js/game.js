@@ -13,12 +13,9 @@ const game = {
     setDirection: function(input, antiInput) {
         if (this.snake.length < 2) {
             this.direction = input;
-        // do not accept input if the player tries to reverse into themselves
-        } else if (this.direction !== antiInput) {
-            // do not accept input if the user tries to reverse into themselves through two or more inputs inside one game tick
-            if ((input === 0 && this.snake[0][1] - 1 !== this.snake[1][1]) || (input === 1 && this.snake[0][0] + 1 !== this.snake[1][0]) || (input === 2 && this.snake[0][1] + 1 !== this.snake[1][1]) || (input === 3 && this.snake[0][0] - 1 !== this.snake[1][0])) {
-                this.direction = input;
-            }
+        // do not accept input if the player tries to reverse into themselves (handles the naive case and multiple inputs within one game tick)
+        } else if ((input === 0 && this.snake[0][1] - 1 !== this.snake[1][1]) || (input === 1 && this.snake[0][0] + 1 !== this.snake[1][0]) || (input === 2 && this.snake[0][1] + 1 !== this.snake[1][1]) || (input === 3 && this.snake[0][0] - 1 !== this.snake[1][0])) {
+            this.direction = input;
         }
     },
     checkSelfCollision: function() {
@@ -207,8 +204,8 @@ const game = {
         this.render();
 
         if (!this.collided) {
-            setTimeout(function() {
-                game.move();
+            setTimeout(() => {
+                this.move();
             }, this.speed);
         } else {
             console.log("Game over.");
